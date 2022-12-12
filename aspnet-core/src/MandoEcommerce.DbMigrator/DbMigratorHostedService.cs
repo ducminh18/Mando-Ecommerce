@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using MandoEcommerce.Data;
 using Serilog;
 using Volo.Abp;
+using MandoEcommerce.Seeding;
 
 namespace MandoEcommerce.DbMigrator;
 
@@ -35,6 +36,11 @@ public class DbMigratorHostedService : IHostedService
                 .ServiceProvider
                 .GetRequiredService<MandoEcommerceDbMigrationService>()
                 .MigrateAsync();
+
+            await application
+               .ServiceProvider
+               .GetRequiredService<IdentityDataSeeder>()
+               .SeedAsync("minhduc1802@gmail.com", "Minhduc@1802");
 
             await application.ShutdownAsync();
 

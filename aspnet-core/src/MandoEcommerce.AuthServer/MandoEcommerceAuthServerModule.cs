@@ -56,7 +56,7 @@ public class MandoEcommerceAuthServerModule : AbpModule
         {
             builder.AddValidation(options =>
             {
-                options.AddAudiences("MandoEcommerce");
+                options.AddAudiences("MandoEcommerce", "MandoEcommerce.Admin");
                 options.UseLocalServer();
                 options.UseAspNetCore();
             });
